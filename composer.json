@@ -1,5 +1,5 @@
 {
-    "name": "omnipay/epay",
+    "name": "gentor/omnipay-epay",
     "type": "library",
     "description": "Epay Bg gateway for Omnipay payment processing library",
     "keywords": [
@@ -12,7 +12,7 @@
         "easypay bg",
         "purchase"
     ],
-    "homepage": "https://github.com/vanssata/omnipay-epay",
+    "homepage": "https://github.com/gentor/omnipay-epay",
     "license": "MIT",
     "authors": [
         {
@@ -20,6 +20,10 @@
             "email": "ivan.kakurov@gmail.com"
         },
         {
+            "name": "Evgeni Nurkov",
+            "email": "evgeni.nurkov@gmail.com"
+	},
+	{
             "name": "Omnipay Contributors",
             "homepage": "https://github.com/vanssata/omnipay-epay/contributors"
         }
