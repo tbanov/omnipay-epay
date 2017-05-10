@@ -6,93 +6,84 @@ use Omnipay\Common\AbstractGateway;
 
 
 /**
- * Eapay Gateway
+ * Class Gateway
+ * @package Omnipay\Epay
  *
- * @link http://www.2checkout.com/documentation/Advanced_User_Guide.pdf
+ * @link https://demo.epay.bg
  */
 class Gateway extends AbstractGateway
 {
-
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'Epay';
     }
 
-
+    /**
+     * @return array
+     */
     public function getDefaultParameters()
     {
-        $settings = parent::getDefaultParameters();
-        $settings['signature'] = '';
-        $settings['min'] = '';
-        $settings['encoded'] = '';
-        $settings['checksum'] = '';
-        $settings['endpoint'] = '';
-        return $settings;
+        return [
+            'min' => '',
+            'signature' => '',
+            'testMode' => true,
+        ];
     }
 
-    public function getSignature()
-    {
-        return $this->getParameter('signature');
-    }
-
-    public function setSignature($value)
-    {
-        return $this->setParameter('signature', $value);
-    }
-
-    public function setReturnUrl($value)
-    {
-        return $this->setParameter('returnUrl', $value);
-    }
-
-    public function setCancelUrl($value)
-    {
-        return $this->setParameter('cancelUrl', $value);
-    }
-
-    public function getEncoded()
-    {
-        return $this->getParameter('encoded');
-    }
-
-    public function setEncoded($value)
-    {
-        return $this->setParameter('encoded', $value);
-    }
-
-    public function getChecksum()
-    {
-        return $this->getParameter('checksum');
-    }
-
-    public function setChecksum($value)
-    {
-        return $this->setParameter('checksum', $value);
-    }
-
-
+    /**
+     * @return string
+     */
     public function getMin()
     {
         return $this->getParameter('min');
     }
 
+    /**
+     * @param $value
+     * @return $this
+     */
     public function setMin($value)
     {
         return $this->setParameter('min', $value);
     }
 
+    /**
+     * @return string
+     */
+    public function getSignature()
+    {
+        return $this->getParameter('signature');
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setSignature($value)
+    {
+        return $this->setParameter('signature', $value);
+    }
+
+    /**
+     * @param array $parameters
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
     public function purchase(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Epay\Message\PurchaseRequest', $parameters);
     }
 
-    public function completePurchase(array $parameters = array())
+    /**
+     * Handle notification callback.
+     *
+     * @param array $parameters
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function acceptNotification(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Epay\Message\CompletePurchaseRequest', $parameters);
-    }
-
-    public function capture(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\Epay\Message\CaptureRequest', $parameters);
+        return $this->createRequest('\Omnipay\Epay\Message\NotifyRequest', $parameters);
     }
 }

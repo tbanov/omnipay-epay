@@ -7,43 +7,56 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * 2Checkout Purchase Response
+ * Class PurchaseEasyPayResponse
+ * @package Omnipay\Epay\Message
  */
 class PurchaseEasyPayResponse extends AbstractResponse implements RedirectResponseInterface
 {
-    public function __construct(RequestInterface $request, $data)
-    {
-      $this->data = $data;
-        $this->request = $request;
-    }
-
-
+    /**
+     * @return bool
+     */
     public function isSuccessful()
     {
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function isRedirect()
     {
         return false;
     }
 
+    /**
+     * @return string
+     */
     public function getRedirectUrl()
     {
-       return $this->request->endpoint.'?'.http_build_query($this->data);
+        return $this->request->endpoint . '?' . http_build_query($this->data);
     }
 
+    /**
+     * @return string
+     */
     public function getRedirectMethod()
     {
         return 'GET';
     }
 
+    /**
+     * @return string
+     */
     public function getMessage()
     {
         if (!$this->isRedirect()) {
-            return (string) parent::getMessage();
+            return (string)parent::getMessage();
         }
     }
+
+    /**
+     * @return mixed
+     */
     public function getRedirectData()
     {
         return $this->data['idn'];
