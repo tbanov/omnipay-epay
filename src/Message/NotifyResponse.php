@@ -11,6 +11,9 @@ use Omnipay\Common\Message\NotificationInterface;
  */
 class NotifyResponse extends AbstractResponse implements NotificationInterface
 {
+    const STATUS_CANCELLED = 'cancelled';
+    const STATUS_TIMEOUTED = 'timeouted';
+
     /**
      * @return bool
      */
@@ -41,6 +44,10 @@ class NotifyResponse extends AbstractResponse implements NotificationInterface
         switch ($this->data['status']) {
             case 'PAID':
                 return static::STATUS_COMPLETED;
+            case 'DENIED':
+                return static::STATUS_CANCELLED;
+            case 'EXPIRED':
+                return static::STATUS_TIMEOUTED;
             default:
                 return static::STATUS_FAILED;
         }
