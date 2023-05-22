@@ -12,7 +12,7 @@
         "easypay bg",
         "purchase"
     ],
-    "homepage": "https://github.com/gentor/omnipay-epay",
+    "homepage": "https://github.com/tbanov/omnipay-epay",
     "license": "MIT",
     "authors": [
         {
@@ -27,7 +27,7 @@
             "name": "Tihomir Banov",
             "email": "tiho.banov@gmail.com"
 	    },
-	{
+	    {
             "name": "Omnipay Contributors",
             "homepage": "https://github.com/vanssata/omnipay-epay/contributors"
         }
